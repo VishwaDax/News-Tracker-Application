@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: news-tracker
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: news-tracker
+  template:
+    metadata:
+      labels:
+        app: news-tracker
+
+    spec:
+      containers:
+        - name: flask-news-tracker
+          image: news-tracker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+              protocol: TCP
